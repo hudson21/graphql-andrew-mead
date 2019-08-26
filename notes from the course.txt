@@ -1,5 +1,18 @@
-Reasons to use GraphQL
+==================================== Reasons to use GraphQL ==================================================
 
 1. GraphQL is fast
 2. graphQLis flexible
 3. graphQL is easy to use at simple to maintain
+
+==================================== Visual Studio Code Plugins =============================================
+Babel ES6/ES7
+Beautify
+Docker 
+Duplicate action
+GraphQL for VSCode
+npm 
+npm intellisense
+Sublime Text Keymap
+Word Count 
+
+==================================== What is GraphQL ========================================================
