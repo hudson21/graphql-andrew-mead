@@ -1,0 +1,5 @@
+Reasons to use GraphQL
+
+1. GraphQL is fast
+2. graphQLis flexible
+3. graphQL is easy to use at simple to maintain
