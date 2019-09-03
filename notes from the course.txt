@@ -82,3 +82,19 @@ npm install babel-cli@6.26.0 babel-preset-env@1.7.0
 facebook.github.io/graphql
 
 npm install graphql-yoga@1.14.10
+
+https://github.com/prisma/graphql-yoga
+
+graphql-toga will set the server in localhost:4000
+
+==================================== 12. GraphQL Scalar Types ========================================
+Five Scalar Types:
+    1. String
+    2. Boolean
+    3. Int
+    4. Float
+    5. ID
+
+==================================== 13. Live Reload for GraphQL ========================================
+npm install nodemon --save-dev
+
