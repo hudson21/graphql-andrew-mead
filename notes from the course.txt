@@ -16,3 +16,63 @@ Sublime Text Keymap
 Word Count 
 
 ==================================== What is GraphQL ========================================================
+graphql-demo.mead.io
+
+Three Main Operations in GraphQL:
+    1. Queries (getting data)
+    2. Mutations (changing actions like update, deete and insert)
+    3. Subscriptions (watchers)
+
+First Query:
+
+query {
+    hello --> first query
+    courseInstructor --> second query
+    course --> Third Query
+}
+
+==================================== 8. Nestes GraphQL Queries ========================================================
+query {
+    me {
+        id 
+        name
+        email
+    }
+}
+
+query {
+    users { --> this returns an array of users
+        name
+    }
+}
+
+query {
+    posts {
+      id
+      title
+      body
+      published
+      author {
+        id
+        name
+        email
+      }
+      comments {
+        id
+        text
+        post {
+          id
+          title
+        }
+      }
+    }
+}
+
+==================================== 9. Setting up Babel ========================================================
+Babeljs.io
+cmder.net --> To use the same commands as Mac or Linux OS 
+
+Toggle Terminal --> Look for it in the VS Code Command Line
+
+npm install babel-cli@6.26.0 babel-preset-env@1.7.0 
+
