@@ -78,3 +78,7 @@ npm install babel-cli@6.26.0 babel-preset-env@1.7.0
 
 ==================================== 10. Import Export ========================================================
 
+==================================== 11. Creating your own graphQL API ========================================
+facebook.github.io/graphql
+
+npm install graphql-yoga@1.14.10
