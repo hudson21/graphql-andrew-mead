@@ -4,51 +4,55 @@ import { GraphQLServer } from 'graphql-yoga';
 //Type Definitions (schema)
 const typeDefs = `
     type Query {
+        greeting(name: String, position: String): String!
+        me: User!
+        post: Post!
+        add(a: Float!, b: Float!): Float!
+    }
+
+    type User {
         id: ID!
         name: String!
-        age: Int!
-        employed: Boolean!
-        gpa: Float
+        email: String!
+        age: Int
+    }
+
+    type Post {
+        id: ID!
         title: String!
-        price: Float!
-        releaseYear: Int
-        rating: Float
-        inStock: Boolean!
+        body: String!
+        published: Boolean!
     }
 `;
 
 //Resolvers
 const resolvers = {
     Query: {
-        id() {
-            return 'abc123'
+        me() {
+            return {
+                id: '14235dss',
+                name: 'Carlos Hudson',
+                email: 'carlosmigu27@hotmail.com',
+                age: 23
+            }
         },
-        name() {
-            return 'Carlos Miguel Hudson Díaz'
+        post() {
+            return {
+                id: '2342334',
+                title: 'Assassins Creed',
+                body: 'I am the body of the post',
+                published: false
+            }
         },
-        age() {
-            return 23
+        greeting(parent, args, ctx, info) {
+            if (args.name && args.position) {
+                return `Hello ${args.name}!. You are my favorite ${args.position}`
+            } else {
+                return 'Hello!'
+            }
         },
-        employed() {
-            return true
-        },
-        gpa() {
-            return 9.5
-        },
-        title() {
-            return 'Assassins Creed'
-        },
-        price() {
-            return 99.99
-        },
-        releaseYear() {
-            return null
-        },
-        rating() {
-            return 5.4
-        },
-        inStock() {
-            return false
+        add(parent, args, ctx, info) {
+            return args.a + args.b
         }
     }
 };

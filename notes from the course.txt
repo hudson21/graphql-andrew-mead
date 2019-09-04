@@ -98,3 +98,13 @@ Five Scalar Types:
 ==================================== 13. Live Reload for GraphQL ========================================
 npm install nodemon --save-dev
 
+
+==================================== 15. Operation Arguments ========================================
+greeting(parent, args, ctx, info) {
+    if (args.name && args.position) {
+        return `Hello ${args.name}!. You are my favorite ${args.position}`
+    } else {
+        return 'Hello!'
+    }
+},
+
