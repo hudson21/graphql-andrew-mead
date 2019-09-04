@@ -8,6 +8,7 @@ const typeDefs = `
         me: User!
         post: Post!
         add(a: Float!, b: Float!): Float!
+        grades: [Int]!
     }
 
     type User {
