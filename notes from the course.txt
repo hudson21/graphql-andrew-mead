@@ -108,3 +108,7 @@ greeting(parent, args, ctx, info) {
     }
 },
 
+add(parent, args, ctx, info) {
+    return args.a + args.b
+},
+

@@ -7,7 +7,7 @@ const typeDefs = `
         greeting(name: String, position: String): String!
         me: User!
         post: Post!
-        add(a: Float!, b: Float!): Float!
+        add(numbers: [Float!]!): Float!
         grades: [Int]!
     }
 
@@ -53,7 +53,17 @@ const resolvers = {
             }
         },
         add(parent, args, ctx, info) {
-            return args.a + args.b
+            if (args.numbers.length === 0) {
+                return 0
+            }
+
+            // [1, 5, 10, 2]
+            return args.numbers.reduce((accumulator, currentValue) => {
+                return accumulator + currentValue
+            })
+        },
+        grades(parent, args, ctx, info) {
+            return [99, 80, 93]
         }
     }
 };
