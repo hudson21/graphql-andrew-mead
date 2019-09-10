@@ -141,3 +141,17 @@ posts {
     }
   }
 
+npm install uuid
+
+v1, v3, v4, v5
+
+
+
+mutation {
+  createUser(name:"Carlos Hudson", email:"carlosmigu27@hotmail.com") {
+    id
+    name
+    email
+  }
+}
+
