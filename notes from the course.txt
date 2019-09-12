@@ -155,3 +155,34 @@ mutation {
   }
 }
 
+
+========================================= Object Spread Operator ========================================================
+
+npm install babel-plugin-transform-object-rest-spread
+
+everything inside of the input type needs to be scalar (not custom objects)
+
+input CreateUserInput {
+    name: String! 
+    email: String! 
+    age: Int
+}
+
+mutation {
+  createUser(
+    data: {
+      name:"Carlos Hudson", 
+      email:"carlosmigu27@hotmail.com"
+    }
+  ) {
+    id
+    name
+    email
+  }
+}
+
+
+-----> nodemon 
+  Specifying extension watch list
+In package.json:
+nodemon src/index.js --ext js,graphql --exec babel-node
