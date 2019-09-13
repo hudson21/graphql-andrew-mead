@@ -186,3 +186,6 @@ mutation {
   Specifying extension watch list
 In package.json:
 nodemon src/index.js --ext js,graphql --exec babel-node
+
+==================================  Subscriptions ================================================
+Subscriptions use websockets in order to update instantly the data which is being fetched
