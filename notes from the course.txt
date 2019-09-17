@@ -189,3 +189,12 @@ nodemon src/index.js --ext js,graphql --exec babel-node
 
 ==================================  Subscriptions ================================================
 Subscriptions use websockets in order to update instantly the data which is being fetched
+
+================================== Enums =========================================================
+Enum: (Enumeration)
+  1. A special type that defines a set of constants
+  2. This type can then be used as the type for a field (similat to scalar and custom object types)
+  3. Values for the field must be one of the constants for the type
+
+Example: 
+  UserRole --> standard, editor, admin
