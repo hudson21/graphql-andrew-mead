@@ -198,3 +198,23 @@ Enum: (Enumeration)
 
 Example: 
   UserRole --> standard, editor, admin
+
+
+=========================================== Prima =================================================
+What is Prisma ? 
+ 
+Native Drivers are tools to get connected with the database in the server (backend)
+ORM (Object Relational Mapping) --> (Sequelize, Mongoose)
+
+Prisma (GraphQL ORM)
+
+=========================================== Prisma Setup (Windows) ====================================
+Getting a PostgreSQL database in Heroku:
+  1. Create a new Project
+  2. Go to the overview tab once the new project is created
+  3. Click on Configure Addons
+  4. Look for heroku postgres in the searching bar
+  5. Settings Tab once the database is created
+  6. Click on view credentials
+Install PgAdmin on your Windows Machine
+  1. 
