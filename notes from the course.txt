@@ -216,5 +216,19 @@ Getting a PostgreSQL database in Heroku:
   4. Look for heroku postgres in the searching bar
   5. Settings Tab once the database is created
   6. Click on view credentials
-Install PgAdmin on your Windows Machine
-  1. 
+Install PgAdmin on your Windows Machine (In my case I prefer to user datagrip)
+
+Install Docker
+    1. www.docker.com
+    2. Download Docker Toolbox
+    3. Docker Address on the Operative System: 192.168.99.100
+
+prisma.io 
+  npm install -g prisma
+  Inside of the root project use `prisma init name-of-the-project` (in graphql-prisma folder)
+    1. Use existing database (In this case the postgresql database generated in heroku)
+    2. PostgreSQL
+    3. No
+
+1. cd prisma
+2. docker-compose up -d
