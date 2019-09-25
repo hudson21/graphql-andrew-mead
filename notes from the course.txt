@@ -232,7 +232,7 @@ prisma.io
 
 1. cd prisma
 2. docker-compose up -d
-3. prisma deploy
+3. prisma deploy --> deploy de datamodel inside of the prisma folder
 
 another commands: 
 1. docker ps 
