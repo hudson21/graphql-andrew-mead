@@ -232,3 +232,13 @@ prisma.io
 
 1. cd prisma
 2. docker-compose up -d
+3. prisma deploy
+
+another commands: 
+1. docker ps 
+2. docker logs prisma_prisma_1
+
+********************************* IMPORTANT TO SEE ********************************************************************************
+This happened to me when using Docker Toolbox on Windows 10, the endpoint had to be changed from using localhost to the VirtualBox default ip within prisma.yml:
+
+endpoint: http://192.168.99.100:4466
