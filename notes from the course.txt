@@ -242,3 +242,62 @@ another commands:
 This happened to me when using Docker Toolbox on Windows 10, the endpoint had to be changed from using localhost to the VirtualBox default ip within prisma.yml:
 
 endpoint: http://192.168.99.100:4466
+
+*********************** GraphQL Directives ***************************
+@unique --> A given field must be unique
+
+
+------------------------- Example of a mutation using Prisma --------------------------------------
+
+mutation {
+  createPost(data: {
+    title: "My First Post",
+    body: "Body of the First Post",
+    published: true
+    author: {
+      connect: {
+        id: "ck14a8wx200090778jovxw30k"
+      }
+    }
+  }) {
+    id
+    title
+    body
+    published
+    author {
+      email
+      name
+    }
+  }
+}
+
+
+mutation {
+  createComment(data: {
+    text: "The first post is amazing :)",
+    author: {
+      connect: {
+        id: "ck14bq9ce00350778ie208omz"
+      }
+    },
+    post: {
+      connect: {
+        id: "ck14ay7l6001v0778h42mmg1a"
+      }
+    }
+  }) {
+    id
+    text
+    author {
+			id
+      name
+      email
+  	}
+  }
+}
+
+
+********************************** Integrating Node.js with Prisma ****************************************
+prisma-binding --> to connect with Node.js
+
+npm install prisma-binding
