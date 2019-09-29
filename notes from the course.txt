@@ -298,6 +298,13 @@ mutation {
 
 
 ********************************** Integrating Node.js with Prisma ****************************************
-prisma-binding --> to connect with Node.js
++prisma-binding --> to connect with Node.js
 
 npm install prisma-binding
+
++graphql-cli
+the command we care inside of this library is: `graphql get-schema`
+
+npm install graphql-cli
+
+console.log(JSON.stringify(data, undefined, 2)); // Example of JSON.stringify
