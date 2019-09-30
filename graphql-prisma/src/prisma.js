@@ -2,8 +2,11 @@ import { Prisma } from 'prisma-binding'
 
 const prisma = new Prisma({
     typeDefs: 'src/generated/prisma.graphql',
-    endpoint: 'http://192.168.99.100:4466'
+    endpoint: 'http://192.168.99.100:4466/blog/default'
 })
+
+export { prisma as default }
+
 
 // callbacks, promises, async await
 
@@ -30,7 +33,7 @@ const prisma = new Prisma({
     }
 }).then(exists => {
     console.log(exists)
-})*/
+})
 
 const createPostForUser = async (authorId, data) => {
     const userExists = await prisma.exists.User({ id: authorId })
@@ -52,12 +55,12 @@ const createPostForUser = async (authorId, data) => {
     return post.author
 }
 
-/*createPostForUser('ck14bq9ce00350778ie208omz', {
+createPostForUser('ck14bq9ce00350778ie208omz', {
     title: 'New Post',
     body: 'This is the body of the New Post',
     published: false
 }).then(user => console.log(JSON.stringify(user, undefined, 2)))
-.catch(error => console.log(error))*/
+.catch(error => console.log(error))
 
 
 const updatePostForUser = async (postId, data) => {
@@ -74,7 +77,7 @@ const updatePostForUser = async (postId, data) => {
     return post.author
 }
 
-/*updatePostForUser('ck158kydw00130778f4yhktj0', {
+updatePostForUser('ck158kydw00130778f4yhktj0', {
     published: true, 
     body: 'This is the body of the New Post Modified'
 }).then(user => console.log(JSON.stringify(user, undefined, 2)))

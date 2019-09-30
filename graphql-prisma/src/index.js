@@ -6,7 +6,7 @@ import Subscription from './resolvers/Subscription';
 import Comment from './resolvers/Comment';
 import User from './resolvers/User';
 import Post from './resolvers/Post';
-import './prisma';
+import prisma from './prisma';
 
 const pubsub = new PubSub()
 
@@ -24,7 +24,8 @@ const server = new GraphQLServer({
     context: {   
         //Here we are passing the db variables in a global way. So it does not matter where the resolvers are they can reach this data
         db,
-        pubsub 
+        pubsub,
+        prisma
     }
 });
 

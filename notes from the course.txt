@@ -392,3 +392,15 @@ http://192.168.99.100:4466/review/default
 
 first default is the service name
 second default is the stage name
+
+=========================> Different type of results in GraphQL Playground
+//nothing --> prisma.query.users(null, null) it would be returning only scalar types (without the relationship fields)
+
+//string --> prisma.query.users(null, '{ id name posts { id title } }').then((data) => {
+    console.log("users", JSON.stringify(data, undefined, 2));
+})
+
+// Object --> the parameter of info which is declared in the resolvers is the one with the information of the paramenters
+ made by the user in the client
+
+The resolvers can take the prosmise and wait for it to be rejected or done 

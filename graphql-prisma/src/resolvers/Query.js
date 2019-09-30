@@ -1,21 +1,12 @@
 const Query = {
-    users(parent, args, { db }, info) {
-        if (!args.name) {
-            return db.users;
-        } else {
-            return db.users.filter(user => user.name.toLowerCase().includes(args.name.toLowerCase()))
-        }
+    users(parent, args, { prisma }, info) {
+        // Different results that can be sent to the graphQL playground:
+        // nothing, string, object
+        //Object Approach
+        return prisma.query.users(null, info)
     },
-    posts(parent, args, { db }, info) {
-        if (args.title) {
-            return db.posts.filter(post => {
-                const titleMatch =  post.title.toLowerCase().includes(args.title.toLowerCase());
-                const bodyMatch = post.body.toLowerCase().includes(args.title.toLowerCase());
-                return titleMatch || bodyMatch;
-            });
-        } else {
-            return db.posts;
-        } 
+    posts(parent, args, { prisma }, info) {
+        return prisma.query.posts(null, info)
     },
     me() {
         return {
