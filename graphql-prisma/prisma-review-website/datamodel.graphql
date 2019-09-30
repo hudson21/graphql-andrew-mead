@@ -1,0 +1,29 @@
+# SET_NULL (default behavior is @relation is not defined) 
+# CASCADE --> it is going to delete the data which are involved in the relationship types
+
+type User {
+  id: ID! @id
+  username: String! @unique
+  reviews: [Review!]! @relation(name: "ReviewToUser", onDelete: CASCADE)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Book {
+  id: ID! @id
+  title: String! 
+  isbn: String!
+  reviews: [Review!]! @relation(name: "ReviewToBook", onDelete: CASCADE)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Review {
+  id: ID! @id 
+  text: String!
+  rating: Int!
+  book: Book! @relation(name: "ReviewToBook", onDelete: SET_NULL)
+  author: User! @relation(name: "ReviewToUser", onDelete: SET_NULL)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}

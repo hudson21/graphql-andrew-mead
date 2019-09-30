@@ -385,3 +385,10 @@ const updatePostForUser = async (postId, data) => {
     body: 'This is the body of the New Post Modified'
 }).then(user => console.log(JSON.stringify(user, undefined, 2)))
 .catch(error => console.log(error.message))*/
+
+
+http://192.168.99.100:4466/blog/default
+http://192.168.99.100:4466/review/default
+
+first default is the service name
+second default is the stage name
