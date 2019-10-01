@@ -1,12 +1,34 @@
 const Query = {
     users(parent, args, { prisma }, info) {
+        const opArgs = {}
+
+        if (args.name) {
+            opArgs.where = {
+                OR: [{
+                    name_contains: args.name
+                }, {
+                    email_contains: args.name
+                }]
+            }
+        }
         // Different results that can be sent to the graphQL playground:
         // nothing, string, object
         //Object Approach
-        return prisma.query.users(null, info)
+        return prisma.query.users(opArgs, info)
     },
     posts(parent, args, { prisma }, info) {
-        return prisma.query.posts(null, info)
+        const opArgs = {}
+
+        if (args.title) {
+            opArgs.where = {
+                OR: [{
+                    title_contains: args.title
+                }, {
+                    body_contains: args.title
+                }]
+            }
+        } 
+        return prisma.query.posts(opArgs, info)
     },
     me() {
         return {
@@ -24,8 +46,8 @@ const Query = {
             published: false
         }
     },
-    comments(parent, args, { db }, info) {
-        return db.comments;
+    comments(parent, args, { prisma }, info) {
+        return prisma.query.comments(null, info);
     }
 }
 

@@ -1,48 +1,21 @@
 import uuidv4 from 'uuid/v4';
 
 const Mutation = {
-    createUser(parent, args, { db }, info) {
-        //It it just to verify if the email is already taken by another user or not
-        const emailTaken = db.users.some(user => user.email === args.data.email)
+    async createUser(parent, args, { prisma }, info) {
+        const emailTaken = await prisma.exists.User({ email: args.data.email })
 
-        if (emailTaken) {
-            throw new Error('Email taken.')
-        }
-        
-        const user = {
-            id: uuidv4(),
-            ...args.data
-        }
+        if (emailTaken) throw new Error('Email taken')
 
-        db.users.push(user);
-
-        return user;
+        return await prisma.mutation.createUser({ data: args.data }, info)
     },
-    deleteUser(parent, args, { db }, info) {
-        const userIndex = db.users.findIndex(user => user.id === args.id)
+    async deleteUser(parent, args, { prisma }, info) {
+        const userExists = await prisma.exists.User({ id: args.id })
 
-        if (userIndex === -1) {
+        if (!userExists) {
             throw new Error('User not found')
         }
 
-        //splice returns the index deleted
-        const deletedUsers = db.users.splice(userIndex, 1)
-
-        db.posts = db.posts.filter((post) => {
-            const match = post.author === args.id
-
-            if (match) {
-                db.comments = db.comments.filter((comment) => comment.post !== post.id)
-            }
-
-            //We want to return true if the post does not belong to the deleted user
-            return !match
-        })
-
-        //We need to delete the comments which appears in another users comments with the author of the id provided
-        db.comments = db.comments.filter(comment => comment.author !== args.id)
-
-        return deletedUsers[0]
+        return await prisma.mutation.deleteUser({ where: {id: args.id} }, info)
     },
     updateUser(parent, args, { db }, info) {
         const { id, data } = args
