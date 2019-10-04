@@ -404,3 +404,14 @@ second default is the stage name
  made by the user in the client
 
 The resolvers can take the prosmise and wait for it to be rejected or done 
+
+
+-------------------------> Authorization by Http Headers in GraphQL Playground
+Generate a token by prisma --> 
+  1. cd prisma (the folder with the prisma configuration)
+  2. Run command (prisma token)
+
+Example of Http Headers:
+ {
+  "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJibG9nQGRlZmF1bHQiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNTcwMTYwNTA0LCJleHAiOjE1NzA3NjUzMDR9.olBgVEmxt_W_fPGa-wcis31I3vLGfW9csqBRu2gfo8s"
+}
