@@ -415,3 +415,7 @@ Example of Http Headers:
  {
   "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJibG9nQGRlZmF1bHQiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNTcwMTYwNTA0LCJleHAiOjE1NzA3NjUzMDR9.olBgVEmxt_W_fPGa-wcis31I3vLGfW9csqBRu2gfo8s"
 }
+
+----> To delete all the data from the database: prisma delete
+
+npm install bcryptjs
