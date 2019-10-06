@@ -18,18 +18,43 @@ const Query = {
         //Object Approach
         return prisma.query.users(opArgs, info)
     },
+    myPosts(parent, { query }, { prisma, request }, info) {
+        const userId = getUserId(request)
+
+        const opArgs = {
+            where: {
+                author: {
+                    id: userId
+                }
+            }
+        }
+
+        if (query) {
+            opArgs.where.OR = [{
+                title_contains: query
+            }, {
+                body_contains: query
+            }]
+        }
+        
+        return prisma.query.posts(opArgs, info)
+
+    },
     posts(parent, args, { prisma }, info) {
-        const opArgs = {}
+        const opArgs = {
+            where: {
+                published: true
+            }
+        }
 
         if (args.title) {
-            opArgs.where = {
-                OR: [{
-                    title_contains: args.title
-                }, {
-                    body_contains: args.title
-                }]
-            }
+            opArgs.where.OR = [{
+                title_contains: args.title
+            }, {
+                body_contains: args.title
+            }]
         } 
+
         return prisma.query.posts(opArgs, info)
     },
     me(parent, args, { prisma, request }, info) {
