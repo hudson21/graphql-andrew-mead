@@ -419,3 +419,26 @@ Example of Http Headers:
 ----> To delete all the data from the database: prisma delete
 
 npm install bcryptjs
+
+----> Json Web Token 
+npm install jsonwebtoken
+
+Lesson 69 (to see morw about the jsonwebtoken structure)
+----> Example using jsonwebtoken
+const token = jwt.sign({ id: 46 }, 'mysecret')
+const decoded = jwt.decode(token)
+const decoded2 = jwt.verify(token, 'mysecret')
+
+
+----> Example of a mutation to verify a use with jsonwebtoken
+const dummy = async () => {
+  const email = 'arturo@hotmail.com'
+  const password = 'flute5816'
+
+  const hashedPassword = '$2a$10$VfFBXbG8sPfatzEcEe1e5uO0/3LqjEJWDKIgcGDilNJKyXFwBXT/.'
+
+  const isMatch = await bcrypt.compare(password, hashedPassword)
+}
+
+----> Context Headers 
+The headers can be reached from request.request.headers

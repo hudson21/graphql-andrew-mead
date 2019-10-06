@@ -1,7 +1,26 @@
-// Take in password -> Validate password -> Hash password -> Generate auth token
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
+import getUserId from '../utils/getUserId';
 
 const Mutation = {
+    async login(parent, { data }, { prisma }, info) {
+        const user = await prisma.query.user({
+            where: {
+                email: data.email
+            }
+        }, null)
+
+        if (!user) throw new Error('Unable to login')
+
+        const isMatch = await bcrypt.compare(data.password, user.password)
+
+        if (!isMatch) throw new Error('Unable to login')
+
+        return {
+            user, 
+            token: jwt.sign({ userId: user.id }, 'thisisasecret')
+        }
+    },
     async createUser(parent, args, { prisma }, info) {
         /*const emailTaken = await prisma.exists.User({ email: args.data.email })
 
@@ -12,26 +31,40 @@ const Mutation = {
         }
 
         const password = await bcrypt.hash(args.data.password, 10)
-
-        return prisma.mutation.createUser({ 
+        const user = prisma.mutation.createUser({ 
             data: {
                 ...args.data,
                 password
             } 
+        })
+
+        return {
+            user, 
+            token: jwt.sign({ userId: user.id }, 'thisisasecret')
+        }
+    },
+    async deleteUser(parent, args, { prisma, request }, info) {
+        const userId = getUserId(request)
+
+        return prisma.mutation.deleteUser({
+             where: {
+                 id: userId
+                } 
         }, info)
     },
-    async deleteUser(parent, args, { prisma }, info) {
-        return prisma.mutation.deleteUser({ where: {id: args.id} }, info)
-    },
-    async updateUser(parent, args, { prisma }, info) {
+    async updateUser(parent, args, { prisma, request }, info) {
+        const userId = getUserId(request)
+
         return prisma.mutation.updateUser({
             where: {
-                id: args.id
+                id: userId
             },
             data: args.data
         }, info)
     },
-    createPost(parent, args, { prisma }, info) {
+    createPost(parent, args, { prisma, request }, info) {
+        const userId = getUserId(request)
+
         return prisma.mutation.createPost({
             data: {
                 title: args.data.title,
@@ -39,20 +72,41 @@ const Mutation = {
                 published: args.data.published,
                 author: {
                     connect: {
-                        id: args.data.author
+                        id: userId
                     }
                 }
             }
         }, info)
     },
-    deletePost(parent, args, { prisma }, info) {
+    async deletePost(parent, args, { prisma, request }, info) {
+        const userId = getUserId(request)
+        const postExists = await prisma.exists.Post({ 
+            id: args.id, 
+            author: {
+                id: userId
+            } 
+        })
+
+        if (!postExists) throw new Error('Unable to delete post')
+
         return prisma.mutation.deletePost({ 
             where: {
                 id: args.id
             }
          },info)
     },  
-    updatePost(parent, { id, data }, { prisma }, info) {
+    async updatePost(parent, { id, data }, { prisma, request }, info) {
+        const userId = getUserId(request)
+
+        const postExists = await prisma.exists.Post({ 
+            id, 
+            author: {
+                id: userId
+            } 
+        })
+
+        if (!postExists) throw new Error('Unable to update the post')
+
         return prisma.mutation.updatePost({
             data,
             where: {

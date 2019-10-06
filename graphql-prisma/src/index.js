@@ -21,11 +21,14 @@ const server = new GraphQLServer({
         Post,
         Comment
     },
-    context: {   
-        //Here we are passing the db variables in a global way. So it does not matter where the resolvers are they can reach this data
-        db,
-        pubsub,
-        prisma
+    context(request) {
+        return {
+            //Here we are passing the db variables in a global way. So it does not matter where the resolvers are they can reach this data
+            db,
+            pubsub,
+            prisma,
+            request
+        }
     }
 });
 
