@@ -77,7 +77,7 @@ type Comment {
 type User {
     id: ID!
     name: String!
-    email: String!
+    email: String
     password: String!
     posts: [Post!]!
     comments: [Comment!]!

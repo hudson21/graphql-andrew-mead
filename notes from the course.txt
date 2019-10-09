@@ -442,3 +442,44 @@ const dummy = async () => {
 
 ----> Context Headers 
 The headers can be reached from request.request.headers
+
+===================================== Fragments in GraphQL ================================================
+
+query {
+  me {
+    ...userFields
+    posts {
+      id
+      title
+      body
+      published
+    }
+  }
+}
+
+Example of fragment in graphQL:
+
+fragment userFields on User {
+  id
+  name 
+  email
+}
+
+
+
+
+Another way to set the challenge time for fragments in User type 
+
+posts: {
+    fragment: 'fragment userId on User { id }',
+    resolve(parent, args, { prisma }, info) {
+        return prisma.query.posts({
+            where: {
+                published: true,
+                author: {
+                  id: parent.id
+                }
+            }
+        }, info)
+    }
+}
