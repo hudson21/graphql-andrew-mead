@@ -2,8 +2,11 @@ import jwt from 'jsonwebtoken'
 
 const getUserId = (request, requireAuth = true) => {
     // get the header value, parse out the token, verify the token ...
-    const header = request.request.headers.authorization
+    // This will exist only on mutations and queries --> request.request.headers.authorization
+    //This is where the subcription data is --> request.connection.context.Authorization
 
+    const header = request.request ? request.request.headers.authorization : request.connection.context.Authorization 
+ 
     if (header) {
         // another way could be header.replace('Bearer', '')
         const token = header.split(' ')[1]
