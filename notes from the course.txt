@@ -486,3 +486,62 @@ posts: {
 
 
 ============================== GraphQL Pagination ===============================================
+skip: int 
+after: String 
+before: String
+first: int 
+last: int
+
+Example: 
+query {
+  posts(first: 4, skip:2, after: "ck1fe50ti003407156vcnisk2") {
+    id
+    title
+    body
+    author {
+      id
+      name
+      email
+    }
+  }
+}
+
+orderBy: (This case applies depending of your column names)
+id_ASC
+id_DESC
+title_ASC
+title_DESC
+body_ASC
+body_DESC
+published_ASC
+published_DESC
+createdAt_ASC
+createdAt_DESC
+updatedAt_ASC
+updatedAt_DESC
+
+Ascending Order: A - Z , False - True, Dates --> Oldest - Newest
+Descending Order: Z - A, True - False, Dates --> Newest - Oldest
+
+Example: 
+query {
+  posts(orderBy: title_ASC) {
+    id
+    title
+    body
+    author {
+      id
+      name
+      email
+    }
+    updatedAt
+    createdAt
+  }
+}
+
+
+
+-----------------> Fetch all the enums generated in the graphQL.schema file
+prisma graphql-import
+https://github.com/Urigo/graphql-import
+
