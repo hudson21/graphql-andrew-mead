@@ -545,3 +545,25 @@ query {
 prisma graphql-import
 https://github.com/Urigo/graphql-import
 
+==================================== Setting up the GraphQL Project in Production ==========================================
+Heroku (free) --> Host the database, Host the Docker container, Host the Node.js Application
+Prisma Cloud (free)
+
+1. Production database 
+2. Host our Prisma docker container 
+3. Host our Node.js application 
+
+1. Prisma Cloud --> Products (Free Version) --> (Focusing on Services and Servers Tab)
+2. Click on Servers Tab --> Add Server Button --> Create New Database --> Choose Heroku --> Click on Create Database 
+3. Click on Setup a Server --> Click on Create Server --> Click on View the Server (Optional)
+
+Prisma Deploy command points to the configuration settled in prisma.yml file 
+
+prisma deploy -e ../config/dev.env --> To specify the adress of our configuration file (environment)
+prisma login --> This if for authenticating yourself
+
+-----------------> For Prisma Production
+1. prisma deploy -e ../config/prod.env
+2. Set up a new Prisma server or deploy to an existing server? --> carlos-miguel-hudson-diaz-cd41fe/hudson-blogging-app
+3. Choose a name for your service --> hudson-blogging-app
+4. Choose a name for your stage --> prod  
