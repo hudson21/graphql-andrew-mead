@@ -567,3 +567,16 @@ prisma login --> This if for authenticating yourself
 2. Set up a new Prisma server or deploy to an existing server? --> carlos-miguel-hudson-diaz-cd41fe/hudson-blogging-app
 3. Choose a name for your service --> hudson-blogging-app
 4. Choose a name for your stage --> prod  
+
+-----------------> Deploying the Node.js App to Heroku 
+1. Having installed Heroku-cli tool in the command line 
+2. npm install -g heroku 
+3. npm install env-cmd 
+4. Heroku Node.js Support
+5. npm install @babel/polyfill@7.0.0
+6. git init in the root folder
+7. heroku create 
+8. heroku config:set PRISMA_ENDPOINT=https://hudson-blogging-app-4200111eb3.herokuapp.com/hudson-blogging-app/prod
+9. git push heroku master 
+10. https://stormy-lake-60747.herokuapp.com/
+11. cd prisma --> prisma deploy -e ../config/prod.env
