@@ -580,3 +580,22 @@ prisma login --> This if for authenticating yourself
 9. git push heroku master 
 10. https://stormy-lake-60747.herokuapp.com/
 11. cd prisma --> prisma deploy -e ../config/prod.env
+
+*********************************************** GraphQL Testing ****************************************************
+prisma deploy -e ../config/test.env
+
+-----------> Exploring Jest 
+jestjs.io 
+npm install --save-dev jest@23.5.0 (this was the version used in the course)
+
+-----------> Apollo Client
+https://www.apollographql.com
+
+apollo boost
+npm install apollo-boost@0.1.14 graphql@14.0.2 
+
+-----------> Parceljs
+parceljs.org
+npm install parcel-bundler --save-dev
+
+npm install babel-register@6.26.0

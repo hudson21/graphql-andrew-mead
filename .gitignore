@@ -1,3 +1,4 @@
-graphql-basics/node_modules
-graphql-prisma/node_modules
-graphql-prisma/config
+graphql-basics/node_modules/
+graphql-prisma/node_modules/
+graphql-prisma/config/
+apollo-client/node_modules/
