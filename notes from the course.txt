@@ -592,10 +592,14 @@ npm install --save-dev jest@23.5.0 (this was the version used in the course)
 https://www.apollographql.com
 
 apollo boost
-npm install apollo-boost@0.1.14 graphql@14.0.2 
+npm install apollo-boost@0.1.14 graphql@14.0.2 cross-fetch (for nodejs with apollo ) 
+
+cross-fetch it is the fetch library
 
 -----------> Parceljs
 parceljs.org
 npm install parcel-bundler --save-dev
 
 npm install babel-register@6.26.0
+
+================== Making real graphQL test cases ======================

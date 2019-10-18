@@ -1,31 +1,71 @@
-import { getFirstName, isValidPassword } from '../src/utils/user';
+import 'cross-fetch/polyfill'
+import ApolloBoost, { gql } from 'apollo-boost'
+import bcrypt from 'bcryptjs'
+import prisma from '../src/prisma'
 
-test('Should return firstname when given full name', () => {
-    const firstName = getFirstName('Carlos Hudson')
-
-    expect(firstName).toBe('Carlos')
+const client = new ApolloBoost({
+    uri: 'http://localhost:4000'
 })
 
-test('Should return first name when given first name', () => {
-    const firstName = getFirstName('Carlos')
+//This method runs after each test case
+beforeEach(async () => {
+    await prisma.mutation.deleteManyPosts()
+    await prisma.mutation.deleteManyUsers()
+    const user = await prisma.mutation.createUser({
+        data: {
+            name: "Arturo Villa", 
+            email: "arturo@hotmail.com", 
+            password: bcrypt.hashSync("myPassword")
+        }
+    })
+    await prisma.mutation.createPost({
+        data: { 
+            title: "First Post", 
+            body: "Body of the First Post",
+            published: false,
+            author: {
+                connect: {
+                    id: user.id
+                }
+            }
+        }
+    })
 
-    expect(firstName).toBe('Carlos')
+    await prisma.mutation.createPost({
+        data: { 
+            title: "Second Post", 
+            body: "Body of the second Post",
+            published: true,
+            author: {
+                connect: {
+                    id: user.id
+                }
+            }
+        }
+    })
 })
 
-test('Should reject password shorter than 8 characters', () => {
-    const isValid = isValidPassword('flute')
+test('Should create a new user', async () => {
+    const createUser = gql`
+        mutation {
+            createUser(
+                data: {
+                    name: "Carlos Hudson", 
+                    email: "carlos@hotmail.com", 
+                    password: "myPassword"
+                }
+            ) {
+                token 
+                user {
+                    id
+                }
+            }
+        }
+    `
 
-    expect(isValid).toBe(false)
-})
+    const response = await client.mutate({ mutation: createUser })
 
-test('Should reject password that contains password', () => {
-    const isValid = isValidPassword('flute5816password')
+    const userExists = await prisma.exists.User({ id: response.data.createUser.user.id})
 
-    expect(isValid).toBe(false)
-})
-
-test('Should correctly validate a valid password', () => {
-    const isValid = isValidPassword('flute5816')
-
-    expect(isValid).toBe(true)
+    expect(userExists).toBe(true)
 })
