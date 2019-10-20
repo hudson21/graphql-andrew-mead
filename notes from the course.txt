@@ -603,3 +603,48 @@ npm install parcel-bundler --save-dev
 npm install babel-register@6.26.0
 
 ================== Making real graphQL test cases ======================
+
+-----> Query Variables Tab in GraphQL Playground 
+Example: 
+mutation($name: String!, $email: String!, $password: String!) {
+  createUser(data: {
+    name: $name,
+    email: $email,
+    password: $password
+  }) {
+    token
+    user {
+      id
+      email
+      name
+    }
+  }
+}
+
+QUERY VARIABLES
+{ 
+  "name":"Rafael Aldama",
+  "email": "rafael@hotmail.com",
+  "password": "flute5816"
+}
+
+------> Another Example 
+mutation($data: CreateUserInput!) {
+  createUser(data: $data) {
+    token
+    user {
+      id
+      email
+      name
+    }
+  }
+}
+
+QUERY VARIABLES 
+{
+  "data": {
+    "name":"Dany Arce",
+  	"email": "dany@hotmail.com",
+  	"password": "flute5816"
+  }
+}
