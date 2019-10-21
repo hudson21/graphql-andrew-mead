@@ -1,6 +1,6 @@
 graphql-basics/node_modules/
 graphql-prisma/node_modules/
-graphql-prisma-boilerplate/node_modules/
-graphql-prisma-boilerplate-starting-point/node_modules/
+boilerplate/node_modules/
+boilerplate-started/node_modules/
 graphql-prisma/config/
 apollo-client/node_modules/
